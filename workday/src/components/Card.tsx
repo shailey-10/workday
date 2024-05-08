@@ -1,14 +1,20 @@
 import { Box, Chip, Tooltip, Typography } from "@mui/material"
+import { useState } from "react"
 import { capitalize } from "../utils/helper"
 import { JobDetails } from "../utils/types"
 import AvatarButton from "./AvatarButton"
 import IconButton from "./IconButton"
+import JdModal from "./JdModal"
 
 const Card = ({ job }: { job: JobDetails }) => {
+   const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
-    <Box boxShadow={2} borderRadius={5} padding={4} width={'25%'} >
+    <Box boxShadow={2} borderRadius={5} padding={4} maxWidth={350} minWidth={280} flex = '1 1 280px'>
       <Box mb={2}>
+        {/* make this a random number */}
       <Chip label="⏳ Posted 2 days ago" size="medium" variant="outlined" />
       </Box>
       <Box  mb={2} display='flex' columnGap={2}>
@@ -19,7 +25,7 @@ const Card = ({ job }: { job: JobDetails }) => {
       <Typography  variant="subtitle2">{capitalize(job.location)}</Typography>
       </Box>
       </Box>
-      <Typography display='inline-block' mb={2} color='text.secondary'>Estimated Salary: {job.salaryCurrencyCode} {job.minJdSalary} - {job.maxJdSalary} LPA </Typography>
+      <Typography display='inline-block' mb={2} color='text.secondary'>Estimated Salary: {job.salaryCurrencyCode} {job.minJdSalary && job.minJdSalary + '-'} {job.maxJdSalary} LPA </Typography>
       <Tooltip slotProps={{
         popper: {
           modifiers: [
@@ -39,7 +45,7 @@ const Card = ({ job }: { job: JobDetails }) => {
       <Typography fontSize={18} fontWeight={500}>About Company</Typography>
       <Typography fontSize={14}>{job.jobDetailsFromCompany}</Typography>
       </Box>
-      <Typography mb={2} mt={-1} color="primary.contrastText" textAlign='center'>View More</Typography>
+      <Typography sx={{cursor : 'pointer'}} onClick = {handleOpen} mb={2} mt={-1} color="primary.contrastText" textAlign='center'>View More</Typography>
       <Box height={50} mb={2}>
       {job.minExp && 
       <>
@@ -52,6 +58,7 @@ const Card = ({ job }: { job: JobDetails }) => {
         <IconButton text="⚡ Easy Apply" />
       <AvatarButton text="Unlock referral asks" />
       </Box>
+      <JdModal description={job.jobDetailsFromCompany} open = {open} handleClose={handleClose} />
     </Box>
   )
 }
