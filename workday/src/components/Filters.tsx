@@ -14,7 +14,7 @@ const Filters = () => {
   
   const dispatch = useDispatch()
   return (
-    <Box display='flex' columnGap='15px' padding={2}>
+    <Box display='flex' rowGap='15px' flexWrap='wrap' columnGap='15px' padding={2}>
           <Autocomplete
            size='small'
         value={expValue}
