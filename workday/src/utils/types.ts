@@ -7,8 +7,8 @@ export type JobDetails = {
   location: string;
   logoUrl: string;
   maxExp: null | number;
-  maxJdSalary: number;
+  maxJdSalary: null | number;
   minExp: null | number;
-  minJdSalary: number;
+  minJdSalary: null | number;
   salaryCurrencyCode: string;
 };

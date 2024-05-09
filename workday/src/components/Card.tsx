@@ -14,7 +14,6 @@ const Card = ({ job }: { job: JobDetails }) => {
   return (
     <Box boxShadow={2} borderRadius={5} padding={4} maxWidth={350} minWidth={280} flex = '1 1 280px'>
       <Box mb={2}>
-        {/* make this a random number */}
       <Chip label="⏳ Posted 2 days ago" size="medium" variant="outlined" />
       </Box>
       <Box  mb={2} display='flex' columnGap={2}>
